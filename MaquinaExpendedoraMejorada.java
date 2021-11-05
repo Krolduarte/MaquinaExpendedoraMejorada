@@ -10,6 +10,8 @@ public class MaquinaExpendedoraMejorada {
     private String estacionOrigen;
     // El destino del billete
     private String estacionDestino;
+    // Numero de Billetes Vendidos
+    private int contarBilletes;
 
     /**
      * Crea una maquina expendedora de billetes de tren con el 
@@ -22,6 +24,7 @@ public class MaquinaExpendedoraMejorada {
         totalDineroAcumulado = 0;
         estacionOrigen = origen;
         estacionDestino = destino;
+        contarBilletes = 0;
 
     }
 
@@ -65,18 +68,31 @@ public class MaquinaExpendedoraMejorada {
             System.out.println("# " + precioBillete + " euros.");
             System.out.println("##################");
             System.out.println();         
-
+            // Incremente en 1 el valor del billete
+            contarBilletes = contarBilletes + 1;
+            
             // Actualiza el total de dinero acumulado en la maquina
             totalDineroAcumulado = totalDineroAcumulado + precioBillete;
             // Reduce el balance del cliente actual dejandole seguir utilizando la maquina
             balanceClienteActual = balanceClienteActual - precioBillete;
+            
+            
         }
         else {
             System.out.println("Necesitas introducir " + (cantidadDeDineroQueFalta) + " euros mas!");
+            
 
         }            
     }
 
+    public int getNumeroBilletesVendidos() {
+        return contarBilletes;
+    }
+    
+    public void imprimeNumerosBilletesVendidos() {
+        System.out.println(contarBilletes);
+    }
+    
     /**
      * Cancela la operacion de compra del cliente actual y le
      * devuelve al cliente el dinero que ha introducido hasta el momento
@@ -91,11 +107,10 @@ public class MaquinaExpendedoraMejorada {
     public int vaciarDineroDeLaMaquina() {
         int aDevolver = 0;
         if (balanceClienteActual == 0) {
-            int sacarDineroDeLaMaquina;
             aDevolver = balanceClienteActual + totalDineroAcumulado;
             balanceClienteActual = 0;
             totalDineroAcumulado = 0;
-            
+
         }
         else {
             System.out.println("Error: maquina haciendo una operacion en curso");
@@ -103,14 +118,17 @@ public class MaquinaExpendedoraMejorada {
         }    
         return aDevolver;
     }
-
-}
     
-     
     
+    
+    /*
+    public int imprimeNumeroBilletesVendidos() {
         
+    }
+ */
+}
+
+    
   
     
-    
-
 
