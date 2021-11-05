@@ -55,7 +55,7 @@ public class MaquinaExpendedoraMejorada {
      * Imprime un billete para el cliente actual
      */
     public void imprimirBillete() {
-        
+
         int cantidadDeDineroQueFalta = precioBillete - balanceClienteActual;
         if (cantidadDeDineroQueFalta <= 0) {        
             // Simula la impresion de un billete
@@ -87,4 +87,18 @@ public class MaquinaExpendedoraMejorada {
         balanceClienteActual = 0;
         return cantidadDeDineroADevolver;
     } 
+
+    public int vaciarDineroDeLaMaquina() {
+        int sacarDineroDeLaMaquina;
+        sacarDineroDeLaMaquina = balanceClienteActual + totalDineroAcumulado;
+        balanceClienteActual = 0;
+        totalDineroAcumulado = 0;
+    
+        return sacarDineroDeLaMaquina;
+    }
+        
+  
+    
+    
+
 }
