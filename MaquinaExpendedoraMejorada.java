@@ -61,51 +61,39 @@ public class MaquinaExpendedoraMejorada {
      * Imprime un billete para el cliente actual
      */
     public void imprimirBillete() {
-
+       
         int cantidadDeDineroQueFalta = precioBillete - balanceClienteActual;
-        if (cantidadDeDineroQueFalta <= 0) {        
-            // Simula la impresion de un billete
-            if (tipoMaquina == true) {
-             System.out.println("##################");
+        if (cantidadDeDineroQueFalta <= 0) {    
+            System.out.println("##################");
             System.out.println("# Billete de tren:");
             System.out.println("# De " + estacionOrigen + " a " + estacionDestino);
             System.out.println("# " + precioBillete + " euros.");
             System.out.println("##################");
-            System.out.println();         
-            // Incremente en 1 el valor del billete
-            contarBilletes = contarBilletes + 1;
+            System.out.println();     
             
+            contarBilletes = contarBilletes + 1;
             // Actualiza el total de dinero acumulado en la maquina
             totalDineroAcumulado = totalDineroAcumulado + precioBillete;
             // Reduce el balance del cliente actual dejandole seguir utilizando la maquina
-            balanceClienteActual = balanceClienteActual - precioBillete;   
+            balanceClienteActual = balanceClienteActual - precioBillete;  
             
-            
+        }
+        
+        if (tipoMaquina == true) {
+            System.out.println();
         }    
+        
         if (tipoMaquina == false) {
             double valorDescuento = (precioBillete * 10) /100;
-            System.out.println("##################");
-            System.out.println("# Billete de tren:");
-            System.out.println("# De " + estacionOrigen + " a " + estacionDestino);
-            System.out.println("# " + precioBillete + " euros.");
             System.out.println("Tiene un descuento del 10% del coste para compras en el comercio que tu elijas del total de " + valorDescuento + "euros");
-            System.out.println("##################");
             System.out.println(); 
-            
-            // Incremente en 1 el valor del billete
-            contarBilletes = contarBilletes + 1;
-            
-            // Actualiza el total de dinero acumulado en la maquina
-            totalDineroAcumulado = totalDineroAcumulado + precioBillete;
-            // Reduce el balance del cliente actual dejandole seguir utilizando la maquina
-            balanceClienteActual = balanceClienteActual - precioBillete;   
         }
+        
         else {
             System.out.println("Necesitas introducir " + (cantidadDeDineroQueFalta) + " euros mas!");
         }
-        }
-        }           
-    
+    }
+                  
     
 
     public int getNumeroBilletesVendidos() {
