@@ -52,17 +52,17 @@ public class MaquinaExpendedoraMejorada {
      * Simula la introduccion de dinero por parte del cliente actual
      */
     public void introducirDinero(int cantidadIntroducida) {
-        if (cantidadIntroducida > 0) {
-            balanceClienteActual = balanceClienteActual + cantidadIntroducida;
-            
-        
-            if (cantidadMaximaBillete < contarBilletes) {
-                 System.out.println(" Todos los billetes han sido vendidos");
+        if (cantidadMaximaBillete > contarBilletes) {
+            if (cantidadIntroducida > 0) {
+                balanceClienteActual = balanceClienteActual + cantidadIntroducida;   
             }
-        }
-        else {
-            System.out.println(cantidadIntroducida + " no es una cantidad de dinero valida.");
-        }        
+            else {
+                System.out.println(cantidadIntroducida + " no es una cantidad de dinero valida.");
+            }        
+            }
+            else {
+                System.out.println("Error ya se ha vendido la maxima cantidad de billetes, no se puede introducir mas dinero");
+            }
     }
 
     /**
@@ -70,39 +70,40 @@ public class MaquinaExpendedoraMejorada {
      */
     public void imprimirBillete() {
         int cantidadDeDineroQueFalta = precioBillete - balanceClienteActual;
-        if (cantidadDeDineroQueFalta <= 0) {    
-            System.out.println("##################");
-            System.out.println("# Billete de tren:");
-            System.out.println("# De " + estacionOrigen + " a " + estacionDestino);
-            System.out.println("# " + precioBillete + " euros.");
-            System.out.println("##################");
-            System.out.println();     
-            
-            contarBilletes = contarBilletes + 1;
-            // Actualiza el total de dinero acumulado en la maquina
-            
-            totalDineroAcumulado = totalDineroAcumulado + precioBillete;
-            // Reduce el balance del cliente actual dejandole seguir utilizando la maquina
-            balanceClienteActual = balanceClienteActual - precioBillete;  
-        }
-            if (cantidadMaximaBillete < contarBilletes) {
-                 System.out.println(" Todos los billetes han sido vendidos");
-            }
+        if (cantidadMaximaBillete > contarBilletes) {
                 
-        
+            if (cantidadDeDineroQueFalta <= 0) {   
+                //Simula la impresion de un billete
+                System.out.println("##################");
+                System.out.println("# Billete de tren:");
+                System.out.println("# De " + estacionOrigen + " a " + estacionDestino);
+                System.out.println("# " + precioBillete + " euros.");
+                System.out.println("##################");
+                System.out.println();     
+                
+                //Va sumando los billetes
+                contarBilletes = contarBilletes + 1;
+                // Actualiza el total de dinero acumulado en la maquina
+                totalDineroAcumulado = totalDineroAcumulado + precioBillete;
+                // Reduce el balance del cliente actual dejandole seguir utilizando la maquina
+                balanceClienteActual = balanceClienteActual - precioBillete;
             
-            if (tipoMaquina == true) {
-                double valorDescuento = (precioBillete * 10) /100;
-                System.out.println("Tiene un descuento del 10% del coste para compras en el comercio que tu elijas del total de " + valorDescuento + "euros");
-                System.out.println(); 
+                if (tipoMaquina == true) {
+                    double valorDescuento = (precioBillete * 10) /100;
+                    System.out.println("Tiene un descuento del 10% del coste para compras en el comercio que tu elijas del total de " + valorDescuento + "euros");
+                    System.out.println(); 
             
+                }
+              
             }
-        
-        
-        else {
-            System.out.println("Necesitas introducir " + (cantidadDeDineroQueFalta) + " euros mas!");
+            
+            else {
+                    System.out.println("Necesitas introducir " + (cantidadDeDineroQueFalta) + " euros mas!");
+            }
         }
-        
+        else {
+                System.out.println(" Error: Todos los billetes han sido vendidos");
+        }
     }
                   
     
