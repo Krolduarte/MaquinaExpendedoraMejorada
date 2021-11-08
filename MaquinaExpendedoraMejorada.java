@@ -14,20 +14,23 @@ public class MaquinaExpendedoraMejorada {
     private int contarBilletes;
     // Crear Maquina con Premio
     private boolean tipoMaquina;
+    // Indicar la cantidad maxima de billetes que pueden ser vendidos
+    private int cantidadMaximaBillete;
 
     /**
      * Crea una maquina expendedora de billetes de tren con el 
      * precio del billete y el origen y destino dados. Se asume que el precio
      * del billete que se recibe es mayor que 0.
      */
-    public MaquinaExpendedoraMejorada(int precioDelBillete, String origen, String destino, boolean maquinaNormal) {
+    public MaquinaExpendedoraMejorada(int precioDelBillete, String origen, String destino, boolean maquinaConPremio, int cantidadMaximaDeBillete) {
         precioBillete = precioDelBillete;
         balanceClienteActual = 0;
         totalDineroAcumulado = 0;
         estacionOrigen = origen;
         estacionDestino = destino;
         contarBilletes = 0;
-        tipoMaquina = maquinaNormal;
+        tipoMaquina = maquinaConPremio;
+        cantidadMaximaBillete = cantidadMaximaDeBillete;
 
     }
 
@@ -51,6 +54,11 @@ public class MaquinaExpendedoraMejorada {
     public void introducirDinero(int cantidadIntroducida) {
         if (cantidadIntroducida > 0) {
             balanceClienteActual = balanceClienteActual + cantidadIntroducida;
+            
+        
+            if (cantidadMaximaBillete < contarBilletes) {
+                 System.out.println(" Todos los billetes han sido vendidos");
+            }
         }
         else {
             System.out.println(cantidadIntroducida + " no es una cantidad de dinero valida.");
@@ -72,9 +80,16 @@ public class MaquinaExpendedoraMejorada {
             
             contarBilletes = contarBilletes + 1;
             // Actualiza el total de dinero acumulado en la maquina
+            
             totalDineroAcumulado = totalDineroAcumulado + precioBillete;
             // Reduce el balance del cliente actual dejandole seguir utilizando la maquina
             balanceClienteActual = balanceClienteActual - precioBillete;  
+        }
+            if (cantidadMaximaBillete < contarBilletes) {
+                 System.out.println(" Todos los billetes han sido vendidos");
+            }
+                
+        
             
             if (tipoMaquina == true) {
                 double valorDescuento = (precioBillete * 10) /100;
@@ -83,9 +98,7 @@ public class MaquinaExpendedoraMejorada {
             
             }
         
-         
         
-        }
         else {
             System.out.println("Necesitas introducir " + (cantidadDeDineroQueFalta) + " euros mas!");
         }
