@@ -97,7 +97,7 @@ public class MaquinaExpendedoraMejorada {
                     double valorDescuento = (precioBillete * 10) /100;
                     System.out.println("Tiene un descuento del 10% del coste para compras en el comercio que tu elijas del total de " + valorDescuento + "euros");
                     System.out.println();    
-                    contarBilletes = 0;
+                    
                     }
                 }
               
