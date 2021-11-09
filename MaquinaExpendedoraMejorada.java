@@ -59,10 +59,10 @@ public class MaquinaExpendedoraMejorada {
             else {
                 System.out.println(cantidadIntroducida + " no es una cantidad de dinero valida.");
             }        
-            }
-            else {
-                System.out.println("Error ya se ha vendido la maxima cantidad de billetes, no se puede introducir mas dinero");
-            }
+        }
+        else {
+            System.out.println("Error ya se ha vendido la maxima cantidad de billetes, no se puede introducir mas dinero");
+        }
     }
 
     /**
@@ -89,17 +89,19 @@ public class MaquinaExpendedoraMejorada {
                 balanceClienteActual = balanceClienteActual - precioBillete;
             
                 if (tipoMaquina == true) {
+                    if (contarBilletes / 3 == 1) {
                     double valorDescuento = (precioBillete * 10) /100;
                     System.out.println("Tiene un descuento del 10% del coste para compras en el comercio que tu elijas del total de " + valorDescuento + "euros");
-                    System.out.println(); 
-            
+                    System.out.println();    
+                    contarBilletes = 0;
+                    }
                 }
               
             }
             
-            else {
+                else {
                     System.out.println("Necesitas introducir " + (cantidadDeDineroQueFalta) + " euros mas!");
-            }
+                }
         }
         else {
                 System.out.println(" Error: Todos los billetes han sido vendidos");
